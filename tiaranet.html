@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TIARA.NET - Paket WiFi Terbaik</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Boogaloo&family=Nova+Square&display=swap" rel="stylesheet">
+</head>
+<style>
+    /* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    background: linear-gradient(to bottom, #f0f8ff, #ffffff);
+    overflow-x: hidden;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background: #007bff;
+    color: white;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo img {
+    width: auto;
+    height: 70px;
+}
+
+.logo h1 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    padding: 0px 1px;
+    margin: 0 5px;
+    color: white;
+    font-weight: bold;
+    margin: auto;
+    font-size: 10px;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #ff6347;
+}
+
+.hero {
+    background-image: url(https://tiaranet.s3.us-east-1.amazonaws.com/b.jpg);
+    background-size: cover; /* Menyesuaikan ukuran agar pas */
+    background-position: center; /* Memusatkan gambar */
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+    padding: 50px;
+    color: white;
+}
+
+.hero-content {
+    max-width: 600px;
+}
+
+.hero-title {
+    font-family: "Nova Square", serif;
+    font-style: normal;
+    font-size: 40px;
+    margin-bottom: 20px;
+    letter-spacing: 4px;
+    text-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.hero h2 {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.hero p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.cta-button {
+    background: #ffffff;
+    color: #007bff;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.cta-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    color: #ff6347; /* Ubah warna teks saat hover */
+}
+
+.cta-button:hover::before {
+    transform: scaleX(1);
+}
+
+.packages {
+    padding: 100px 50px;
+    text-align: center;
+    background: #f8f9fa;
+}
+
+.package-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+}
+
+.package-card {
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.package-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+a {
+    background: #007bff;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: bold;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s ease;
+}
+
+a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.3);
+    transition: width 0.3s ease;
+}
+
+a:hover {
+    background: #0056b3;
+}
+
+a:hover::before {
+    width: 100%;
+}
+
+.features {
+    padding: 100px 50px;
+    text-align: center;
+    font-size: 10px;
+    background: #ffffff;
+}
+
+.feature-list {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+
+.contact {
+    padding: 100px 50px;
+    background: #f8f9fa;
+    text-align: center;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.footer {
+    text-align: center;
+    padding: 20px;
+    background: #333;
+    color: white;
+}
+</style>
+<script>
+    // Initialize AOS
+AOS.init({
+    duration: 1000,
+    easing: 'ease-in-out',
+    once: true,
+});
+
+// Ripple effect for buttons
+document.querySelectorAll('.a').forEach(button => {
+    button.addEventListener('click', function (e) {
+        let x = e.clientX - e.target.offsetLeft;
+        let y = e.clientY - e.target.offsetTop;
+
+        let ripple = document.createElement('span');
+        ripple.style.left = `${x}px`;
+        ripple.style.top = `${y}px`;
+        this.appendChild(ripple);
+
+        setTimeout(() => {
+            ripple.remove();
+        }, 600);
+    });
+});
+</script>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <img src="https://tiaranet.s3.us-east-1.amazonaws.com/tiaranet.png" alt="TIARA.NET Logo">
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#home">Beranda</a></li>
+                <li><a href="#packages">Paket</a></li>
+                <li><a href="#features">Fitur</a></li>
+                <li><a href="#contact">Kontak</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title" data-aos="fade-up">TIARA.NET</h1>
+            <p data-aos="fade-up" data-aos-delay="400">Internet Murah Untuk Keluarga DiRumah</p>
+            <a href="#packages" class="cta-button" data-aos="zoom-in" data-aos-delay="600">Lihat Paket</a>
+        </div>
+    </section>
+
+    <!-- Packages Section -->
+    <section id="packages" class="packages">
+        <h2 data-aos="fade-up">Pilih Paket WiFi Anda</h2>
+        <div class="package-grid">
+            <div class="package-card" data-aos="flip-left" data-aos-delay="200">
+                <img src="https://tiaranet.s3.us-east-1.amazonaws.com/paket.png" alt="Logo Paket" width="auto" height="60px">
+                <h3>Paket HEMAT</h3>
+                <p>15 Mbps</p>
+                <p>Rp 150.000/bulan</p>
+                <a class="btn ripple" href="https://tiaranet.s3.us-east-1.amazonaws.com/input.html">Daftar Sekarang</a>
+            </div>
+            <div class="package-card" data-aos="flip-left" data-aos-delay="400">
+                <img src="https://tiaranet.s3.us-east-1.amazonaws.com/paket.png" alt="Logo Paket" width="auto" height="60px">
+                <h3>Paket MANTAP</h3>
+                <p>20 Mbps</p>
+                <p>Rp 200.000/bulan</p>
+                <a class="btn ripple" href="https://tiaranet.s3.us-east-1.amazonaws.com/input.html">Daftar Sekarang</a>
+            </div>
+            <div class="package-card" data-aos="flip-left" data-aos-delay="600">
+                <img src="https://tiaranet.s3.us-east-1.amazonaws.com/paket.png" alt="Logo Paket" width="auto" height="60px">
+                <h3>Paket PUAS</h3>
+                <p>30 Mbps</p>
+                <p>Rp 250.000/bulan</p>
+                <a class="btn ripple" href="https://tiaranet.s3.us-east-1.amazonaws.com/input.html">Daftar Sekarang</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <h2 data-aos="fade-up">Mengapa Memilih TIARA.NET?</h2>
+        <div class="feature-list">
+            <div class="feature-item" data-aos="fade-up" data-aos-delay="200">
+                <img src="https://tiaranet.s3.us-east-1.amazonaws.com/speed-icon.png" alt="Speed Icon" width="auto" height="60px">
+                <h3>Kecepatan Tinggi</h3>
+                <p>Nikmati internet super cepat tanpa buffering.</p>
+            </div>
+            <div class="feature-item" data-aos="fade-up" data-aos-delay="400">
+                <img src="https://tiaranet.s3.us-east-1.amazonaws.com/support-icon.png" alt="Support Icon" width="auto" height="50px">
+                <h3>Dukungan 24/7</h3>
+                <p>Kami siap membantu Anda kapan saja.</p>
+            </div>
+            <div class="feature-item" data-aos="fade-up" data-aos-delay="600">
+                <img src="https://tiaranet.s3.us-east-1.amazonaws.com/coverage-icon.png" alt="Coverage Icon" width="auto" height="50px">
+                <h3>Jangkauan Luas</h3>
+                <p>Menikmati Internet tanpa kendala Jarak</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2 data-aos="fade-up">Hubungi Kami</h2>
+        <div class="contact-info">
+            <p><strong>Email:</strong> infotiaranet@gmail.com</p>
+            <p><strong>Telepon:</strong> +62 882 273 485 41</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; Powered By <b>TIARA.NET</b></p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
